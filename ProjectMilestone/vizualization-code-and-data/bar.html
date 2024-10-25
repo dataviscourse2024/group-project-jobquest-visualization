@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Postings by State</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .bar {
+            fill: lightblue;
+        }
+        .axis--x path,
+        .axis--x line {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Job Postings by State</h1>
+    <label for="state-select">Choose a state:</label>
+    <select id="state-select">
+        <option value="CA">California</option>
+        <option value="TX">Texas</option>
+        <option value="NY">New York</option>
+    </select>
+    <svg width="800" height="400"></svg>
+    <script>
+       
+        const jobData = {
+            "CA": [
+                { title: "Software Engineer", job_count: 1200 },
+                { title: "Data Scientist", job_count: 950 },
+                { title: "Product Manager", job_count: 800 },
+                { title: "Project Manager", job_count: 750 },
+                { title: "Web Developer", job_count: 700 },
+            ],
+            "TX": [
+                { title: "Software Engineer", job_count: 900 },
+                { title: "Data Scientist", job_count: 600 },
+                { title: "Product Manager", job_count: 700 },
+                { title: "Project Manager", job_count: 650 },
+                { title: "Web Developer", job_count: 500 },
+            ],
+            "NY": [
+                { title: "Software Engineer", job_count: 1100 },
+                { title: "Data Scientist", job_count: 800 },
+                { title: "Product Manager", job_count: 750 },
+                { title: "Project Manager", job_count: 800 },
+                { title: "Web Developer", job_count: 650 },
+            ]
+        };
+
+        const margin = {top: 20, right: 30, bottom: 40, left: 40},
+              width = 800 - margin.left - margin.right,
+              height = 400 - margin.top - margin.bottom;
+
+        const svg = d3.select("svg")
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        function updateChart(state) {
+            svg.selectAll("*").remove();
+
+            const data = jobData[state];
+
+            const x = d3.scaleBand()
+                .domain(data.map(d => d.title))
+                .range([0, width])
+                .padding(0.1);
+
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(data, d => d.job_count)])
+                .nice()
+                .range([height, 0]);
+
+            svg.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", `translate(0, ${height})`)
+                .call(d3.axisBottom(x));
+
+            svg.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(y));
+
+            svg.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", d => x(d.title))
+                .attr("y", height)
+                .attr("width", x.bandwidth())
+                .attr("height", 0)
+                .transition()
+                .duration(750)
+                .attr("y", d => y(d.job_count))
+                .attr("height", d => height - y(d.job_count));
+        }
+
+        updateChart("CA");
+
+        d3.select("#state-select").on("change", function() {
+            const selectedState = d3.select(this).property("value");
+            updateChart(selectedState);
+        });
+    </script>
+</body>
+</html>

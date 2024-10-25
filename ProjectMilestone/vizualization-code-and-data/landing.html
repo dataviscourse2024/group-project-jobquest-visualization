@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobQuest Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #181818; 
+            color: #ffffff; 
+        }
+        header {
+            background: #000000; 
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #007BFF;
+        }
+        nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #ffffff; 
+            font-weight: bold;
+            transition: color 0.3s; 
+        }
+        nav a:hover {
+            color: #007BFF;
+            text-decoration: underline;
+        }
+        .content {
+            display: none;
+            padding: 20px;
+            background: #2c2c2c; 
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+            margin: 0 auto; 
+            max-width: 800px; 
+        }
+        .active {
+            display: block;
+        }
+        h2 {
+            border-bottom: 2px solid #007BFF; 
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>JobQuest Visualization</h1>
+    <p>Explore the Tech Job Market in the USA</p>
+</header>
+
+<nav>
+    <a href="#" onclick="showTab('demographics')">Demographics</a>
+    <a href="#" onclick="showTab('job-trends')">Job Trends</a>
+    <a href="#" onclick="showTab('job-projections')">Job Type Projections</a>
+    <a href="#" onclick="showTab('statewise')">Statewise Top Jobs</a>
+</nav>
+
+<div id="demographics" class="content active">
+    <h2>Demographics</h2>
+    <p>Explore the demographic breakdown of tech job seekers, including age, education level, and gender distribution.</p>
+</div>
+
+<div id="job-trends" class="content">
+    <h2>Job Trends</h2>
+    <p>Analyze the trends in job opportunities, including growth rates and seasonal variations.</p>
+</div>
+
+<div id="job-projections" class="content">
+    <h2>Job Type Projections</h2>
+    <p>View projections for various tech job roles, showcasing expected growth in the coming years.</p>
+</div>
+
+<div id="statewise" class="content">
+    <h2>Statewise Top Jobs</h2>
+    <p>Discover the top tech job opportunities available in each state, along with relevant statistics.</p>
+</div>
+
+<script>
+    function showTab(tabName) {
+        var contents = document.querySelectorAll('.content');
+        contents.forEach(function(content) {
+            content.classList.remove('active');
+        });
+        document.getElementById(tabName).classList.add('active');
+    }
+</script>
+
+</body>
+</html>

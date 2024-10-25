@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Jobs Choropleth Map</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <style>
+        .state {
+            stroke: #ffffff;
+            stroke-width: 0.5;
+        }
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 8px;
+            background: #333;
+            color: #fff;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="tooltip" class="tooltip"></div>
+    <svg width="960" height="600"></svg>
+    <script>
+        const width = 960;
+        const height = 600;
+
+        const svg = d3.select("svg");
+        const colorScale = d3.scaleSequential(d3.interpolateBlues);
+        const tooltip = d3.select("#tooltip");
+
+        const jobData = [
+            { state: 'CA', count: 11562 }, 
+            { state: 'TX', count: 10197 }, 
+            { state: 'NY', count: 6043 },  
+            { state: 'FL', count: 5872 },  
+            { state: 'NC', count: 4924 },
+        ];
+
+        d3.json("https://d3js.org/us-10m.v1.json").then(us => {
+            const jobMap = new Map();
+            jobData.forEach(d => {
+                jobMap.set(d.state, d.count);
+            });
+
+            const maxJobs = d3.max(jobData, d => d.count);
+            colorScale.domain([0, maxJobs]);
+
+            svg.append("g")
+                .selectAll("path")
+                .data(topojson.feature(us, us.objects.states).features)
+                .enter().append("path")
+                .attr("class", "state")
+                .attr("fill", d => {
+                    const jobCount = jobMap.get(d.id); 
+                    return jobCount ? colorScale(jobCount) : "#ccc";
+                })
+                .attr("d", d3.geoPath())
+                
+                .on("mouseover", (event, d) => {
+                    const jobCount = jobMap.get(d.id);
+                    if (jobCount) {
+                        tooltip
+                            .style("opacity", 1)
+                            .html(`
+                                <strong>${d.properties.name}</strong><br>
+                                Total Jobs: ${jobCount}
+                            `);
+                    }
+                })
+                .on("mousemove", (event) => {
+                    tooltip.style("left", (event.pageX + 10) + "px")
+                           .style("top", (event.pageY - 28) + "px");
+                })
+                .on("mouseout", () => {
+                    tooltip.style("opacity", 0);
+                });
+
+        }).catch(error => {
+            console.error("Error loading data:", error);
+        });
+    </script>
+</body>
+</html>
