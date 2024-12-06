@@ -1,0 +1,52 @@
+state,count,mean_salary,top_job
+CA,11562,80000,Software Engineer
+TX,10197,75000,Data Analyst
+NY,6043,90000,Product Manager
+FL,5872,70000,Sales Executive
+NC,4924,68000,Marketing Specialist
+IL,4430,72000,Accountant
+PA,4104,65000,Project Manager
+VA,3648,71000,Software Developer
+MA,3485,95000,Data Scientist
+OH,3402,62000,IT Support
+GA,3392,61000,HR Manager
+NJ,3249,82000,Network Engineer
+MI,2827,67000,Web Developer
+WA,2688,88000,UX Designer
+AZ,2495,69000,SEO Specialist
+CO,2316,74000,DevOps Engineer
+MD,1955,85000,Cybersecurity Analyst
+MO,1928,60000,Financial Analyst
+TN,1865,63000,Operations Manager
+WI,1834,64000,Quality Assurance
+MN,1816,70000,Database Administrator
+IN,1799,55000,Graphic Designer
+SC,1533,58000,Technical Writer
+OR,1182,76000,Mobile Developer
+CT,1174,90000,Research Scientist
+KY,1172,57000,Customer Service
+LA,1101,59000,Logistics Coordinator
+AL,988,54000,Sales Associate
+IA,988,55000,Content Writer
+DC,988,92000,Policy Analyst
+UT,961,72000,Data Engineer
+KS,924,65000,Web Analyst
+NV,900,67000,Business Analyst
+OK,790,52000,Insurance Agent
+AR,661,50000,Event Coordinator
+NE,591,51000,Recruiter
+NH,556,83000,IT Consultant
+NM,497,64000,Public Relations
+HI,428,78000,Real Estate Agent
+WV,415,49000,Administrative Assistant
+ID,409,51000,Office Manager
+MS,382,45000,Customer Support
+ME,375,47000,Field Technician
+DE,318,60000,Claims Adjuster
+RI,299,53000,Market Research
+ND,231,56000,Logistics Analyst
+MT,229,48000,Data Entry
+AK,205,65000,Wildlife Biologist
+VT,180,57000,Store Manager
+SD,164,44000,Server
+WY,125,49000,Construction Worker

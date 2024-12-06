@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobQuest Visualization</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson@3"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1>JobQuest Visualization</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#map-container">Demographics</a></li>
+      <li><a href="#job-opening-rate-overview">Job Trends</a></li>
+      <li><a href="#job-type-projections">Job Type Projections</a></li>
+      <li><a href="#bar-chart-section">Statewise Top Jobs</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Explore the Job Market in the USA</h2>
+    <p>
+      Our visualizations help you explore job opportunities, salary trends, and demand for roles across the USA.
+      Navigate through the sections to uncover valuable insights.
+    </p>
+  </section>
+
+  <!-- Choropleth Map Section -->
+  <section id="map-container">
+    <h2>Demographics</h2>
+    <p>Explore job densities across the U.S. by state.</p>
+    <div id="map"></div>
+    <div class="tooltip" id="tooltip"></div>
+  </section>
+
+  <!-- Placeholder for other visualizations -->
+  <!-- <section id="job-trends">
+    <h2>Job Trends</h2>
+    <p>Interactive line plots showing job trends over time.</p>
+    <div id="line-plot-placeholder"></div>
+  </section> -->
+
+  <section id="job-opening-rate-overview">
+    <h2>Monthly Job Opening Rate (2014–2024)</h2>
+    <div id="multi-line-chart"></div>
+  </section>
+  
+  <section id="job-opening-rate-2024">
+    <h2>Job Opening Rate for each year</h2>
+    <div id="single-line-chart"></div>
+  </section>
+  
+  
+
+  <section id="job-type-projections">
+    <h2>Job Type Projections</h2>
+    <p>Bubble chart showing projected growth rates for tech jobs.</p>
+    <div id="bubble-chart-placeholder"></div>
+  </section>
+
+  <section id="bar-chart-section">
+    <h2>Top Job Roles by State</h2>
+    <div id="bar-chart"></div>
+  </section>
+  
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 JobQuest Visualization. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Link to the JavaScript file -->
+  <script src="main.js"></script>
+</body>
+</html>
